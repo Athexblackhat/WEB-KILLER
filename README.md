@@ -847,7 +847,7 @@ python run.py TOOLS  # Then type: DSTAT
 | **GUI/Menu** | ✅ CLI+Menu | ❌ CLI Only | ✅ GUI | ✅ GUI | ❌ CLI Only |
 | **Multi-Platform** | ✅ All OS | ⚠️ Linux Only | ⚠️ Windows | ⚠️ Windows | ⚠️ Linux Only |
 | **License** | MIT | MIT | Public Domain | GPL | MIT |
-| **Maintained** | ✅ 2024 | ✅ 2024 | ❌ 2010 | ❌ 2012 | ❌ 2017 |
+| **Maintained** | ✅ 2026 | ✅ 2024 | ❌ 2010 | ❌ 2012 | ❌ 2017 |
 | **Overall Score** | **🏆 10/10** | 🥈 7/10 | 3/10 | 2/10 | 2/10 |
 
 ---
