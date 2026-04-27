@@ -1,9 +1,6 @@
 <a href="https://github.com/Athexblackhat/WEB-KILLER"><img src="/images/logo.png" alt="0" border="0" /></a> 
 
 
-<!-- WEB-KILLER CINEMATIC EDITION README -->
-<div align="center">
-
 # <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=45&duration=2000&pause=500&color=FF0000&center=true&vCenter=true&width=900&height=100&lines=%E2%9A%A1+WEB-KILLER+2.1+%E2%9A%A1;%F0%9F%92%80+ULTIMATE+DDOS+ARSENAL+%F0%9F%92%80;%F0%9F%94%A5+57+DEADLY+METHODS+%F0%9F%94%A5;%F0%9F%8C%8A+UNLEASH+THE+STORM+%F0%9F%8C%8A" alt="Typing SVG" />
 
 ## 🔥 WEB-KILLER v2.1 - Comprehensive Tool Overview
@@ -57,24 +54,22 @@ Continuous Evolution: Regular updates with new attack vectors and bypass techniq
 ---
 
 <!-- CINEMATIC INTRO ANIMATION -->
-<div align="center">
+
   <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=30&duration=1500&pause=300&color=FF0000&center=true&vCenter=true&width=800&height=60&lines=%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88;INITIALIZING+ATTACK+SYSTEM...;LOADING+WEAPONS+ARSENAL...;CALIBRATING+TARGETING+SYSTEM...;%E2%9A%A0%EF%B8%8F+SYSTEM+ARMED+%E2%9A%A0%EF%B8%8F" />
-</div>
+
 
 ---
 
 <!-- 🎬 CINEMATIC LIVE ATTACK DESTROYER GRAPH -->
-<div align="center">
+
 
 # <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=35&duration=2000&pause=500&color=FF0000&center=true&vCenter=true&width=800&height=50&lines=%F0%9F%8E%AC+LIVE+ATTACK+DESTROYER+%F0%9F%8E%AC" />
 
 
-</div>
-
 ---
 
 <!-- CINEMATIC ATTACK SEQUENCE -->
-<div align="center">
+
 
 ## 🎬 CINEMATIC ATTACK SEQUENCE
 
@@ -129,7 +124,6 @@ sequenceDiagram
     
     Note over ATTACKER,TARGET: 🎉 MISSION COMPLETE - WEBSITE DESTROYED
 ```
-</div>
 
 
 <!-- 3D REAL-TIME ATTACK DASHBOARD --><div align="center">
@@ -278,13 +272,13 @@ BYPASS:       ███████████████████░ 95%
 ```
 
 
-## FEATURE SHOWCASE
+## 🎯 FEATURE SHOWCASE
 
-```mermaid 
+```mermaid
 %%{init: {'theme':'dark', 'themeVariables': {'primaryColor':'#FF0000','primaryTextColor':'#fff','lineColor':'#FF0000'}}}%%
 mindmap
   root((WEB-KILLER))
-    🎯 Attack Vectors
+    Attack Vectors
       Layer 7 HTTP
         GET/POST Flood
         Cloudflare Bypass
@@ -300,35 +294,35 @@ mindmap
         NTP 556x
         MEM 51000x
         CLDAP 70x
-    🛡️ Defense Bypass
+    Defense Bypass
       Cloudflare UAM
       DDoS-Guard
       AWS Shield
       Akamai
       Imperva
       Sucuri
-    🎮 Special Targets
+    Special Targets
       Minecraft
       FiveM
       TeamSpeak 3
       Valve Servers
       Tor .onion
       WordPress
-    🔧 Tools Arsenal
+    Tools Arsenal
       Ping Scanner
       GeoIP Lookup
       Network Monitor
       Site Checker
       DNS Resolver
       TS3 Scanner
-    💎 Premium Features
+    Premium Features
       Proxy Army
       IP Spoofing
       Auto-Rotation
       3D Analytics
       Live Dashboard
       Multi-Vector
-```
+```      
 
 
 ## 📡 REAL-TIME ATTACK MONITOR
@@ -397,11 +391,8 @@ mindmap
 ```
 
 
-<!-- FINAL FOOTER --><div align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=200&section=footer&text=READY%20TO%20UNLEASH%20THE%20STORM%3F&fontSize=40&fontColor=FFFFFF&animation=fadeIn&fontAlignY=65" /> </div><div align="center">
+<!-- FINAL FOOTER --> <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,2,5,30&height=200&section=footer&text=READY%20TO%20UNLEASH%20THE%20STORM%3F&fontSize=40&fontColor=FFFFFF&animation=fadeIn&fontAlignY=65" /> 
 
-
-🌐 JOIN THE REVOLUTION
-<p align="center"> <img src="https://img.shields.io/badge/GITHUB-FOLLOW%20US-FF0000?style=for-the-badge&logo=github&logoColor=white&labelColor=000000" /> <img src="https://img.shields.io/badge/DISCORD-JOIN%20SERVER-7289DA?style=for-the-badge&logo=discord&logoColor=white&labelColor=000000" /> <img src="https://img.shields.io/badge/TELEGRAM-SECRET%20CHANNEL-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white&labelColor=000000" /> </p>
 
 
                                                                                
@@ -423,20 +414,12 @@ mindmap
 <summary><b>📊 Click to View Competitive Advantage Graphs</b></summary>
 
 ### 3D Bar Chart Comparison
-<div align="center">
   <img src="/images/comparison.svg" alt="Bar Chart" width="100%">
-  <!-- OR -->
-<img src="./images/comparison.svg" alt="Bar Chart" width="100%">
-</div>
 
 
 ### Scorecard Comparison
-<div align="center">
   <img src="/images/features.svg" alt="Scorecard" width="100%">
-  <!-- OR -->
-<img src="./images/features.svg" alt="Bar Chart" width="100%">
-</div>
-
+  
 </details>
 
 ## 📦 SYSTEM REQUIREMENTS
