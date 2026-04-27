@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  WEB-KILLER:
+    build: .
+    container_name: WEB-KILLER
+    restart: unless-stopped
+    volumes:
+      - ./config.json:/app/config.json
+      - ./files:/app/files
+     
+    
+    

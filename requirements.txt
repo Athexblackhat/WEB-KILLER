@@ -1,0 +1,11 @@
+pyroxy @ git+https://github.com/Athexblackhat/PyRoxy.git
+yarl>=1.7.2
+cloudscraper==1.2.71
+certifi==2024.7.4
+dnspython==2.6.1
+requests==2.32.4
+impacket==0.10.0
+psutil
+icmplib
+pyasn1==0.4.8
+yarl
